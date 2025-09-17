@@ -3,8 +3,8 @@ const todoInput = document.getElementById("todoInput");
 const todoList = document.getElementById("todoList");
 const pagination = document.getElementById("pagination");
 
-const todos = []; // Array to store tasks
-const itemsPerPage = 3; // Number of tasks per page
+const todos = []; 
+const itemsPerPage = 3; 
 let currentPage = 1;
 
 // Add Task
@@ -25,12 +25,11 @@ addBtn.addEventListener("click", () => {
 function renderTodos() {
   todoList.innerHTML = "";
 
-  // Get the tasks for the current page
+
   const start = (currentPage - 1) * itemsPerPage;
   const end = start + itemsPerPage;
   const currentTodos = todos.slice(start, end);
 
-  // Render tasks
   currentTodos.forEach((task, index) => {
     const li = document.createElement("li");
     li.className = "todo-item";
@@ -79,7 +78,8 @@ function renderPagination() {
 }
 
 function editTask(index, li, taskText) {
-  // Create an input field for editing
+
+  
   const input = document.createElement("input");
   input.type = "text";
   input.value = todos[index];
@@ -104,8 +104,6 @@ function editTask(index, li, taskText) {
     if (updatedTask !== "") {
       todos[index] = updatedTask;
       renderTodos();
-    } else {
-      showErrorMessage("Task cannot be empty.");
     }
   });
 }
@@ -119,11 +117,3 @@ function deleteTask(index) {
   renderPagination();
 }
 
-function showErrorMessage(message) {
-  const errorMessage = document.querySelector(".error-message");
-  errorMessage.textContent = message;
-  errorMessage.style.display = "block";
-  setTimeout(() => {
-    errorMessage.style.display = "none";
-  }, 3000);
-}
